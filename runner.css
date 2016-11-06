@@ -4,8 +4,8 @@ body{
 }
 
 .wrapper{
-  width: 600px;
-  height: 360px;
+  width: 1200px;
+  height: 720px;
   position: absolute;
   top: 5px;
   left: 5px;
@@ -17,8 +17,8 @@ canvas{
   left: 0;
   border: 1px solid black;
   z-index: 1;
-  width: 600px;
-  height: 360px;
+  width: 1200px;
+  height: 720px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;

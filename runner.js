@@ -118,7 +118,7 @@
     }
 
     this.update = function(){
-      if (counter = frameSpeed - 1){
+      if (counter == frameSpeed - 1){
         currentFrame = (currentFrame + 1) % animationSequence.length;
       }
       counter = (counter + 1) % frameSpeed;
