@@ -284,7 +284,29 @@
   };
 
 
+  /**
+   ** Sprites are anything drawn to the screen (ground, enemies, etc.)
+   ** @param {integer} x - Starting x position of the player
+   ** @param {integer} y - Starting y position of the player
+   ** @param {string} type - Type of sprite
+  **/
+   function Sprite(x, y, type) {
+     this.x      = x;
+     this.y      = y;
+     this.width  = platformWidth;
+     this.height = platformWidth;
+     this.type   = type;
+     Vector.call(this, x, y, 0, 0);
 
+     this.update = function() {
+       this.dx = -player.speed;
+       this.advance();
+     };
+     this.draw = function() {
+       ctx.drawImage(assetLoader.imgs[this.type], this.x, this.y);
+     };
+   }
+  Sprite.prototype = Object.create(Vector.prototype);
 
 
   function startGame(){
