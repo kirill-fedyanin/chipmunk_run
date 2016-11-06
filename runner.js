@@ -138,6 +138,48 @@
     }
   }
 
+  var background = (function(){
+    var sky = {};
+    var backdrop = {};
+    var backdrop2 = {};
+
+    this.draw = function(){
+      ctx.drawImage(assetLoader.imgs.bg, 0, 0);
+
+      sky.x -= sky.speed;
+      backdrop.x -= backdrop.speed;
+      backdrop2.x -= backdrop2.speed;
+      ctx.drawImage(assetLoader.imgs.sky, sky.x, sky.y);
+      ctx.drawImage(assetLoader.imgs.sky, sky.x + canvas.width, sky.y); ctx.drawImage(assetLoader.imgs.backdrop, backdrop.x, backdrop.y);
+      ctx.drawImage(assetLoader.imgs.backdrop, backdrop.x + canvas.width, backdrop.y);
+      ctx.drawImage(assetLoader.imgs.backdrop2, backdrop2.x, backdrop2.y);
+      ctx.drawImage(assetLoader.imgs.backdrop2, backdrop2.x + canvas.width, backdrop2.y);
+
+      if (sky.x + assetLoader.imgs.sky.width <= 0)
+          sky.x = 0;
+      if (backdrop.x + assetLoader.imgs.backdrop.width <= 0)
+          backdrop.x = 0;
+      if (backdrop2.x + assetLoader.imgs.backdrop2.width <= 0)
+          backdrop2.x = 0;
+    };
+
+    this.reset = function() {
+      sky.x = 0;
+      sky.y = 0;
+      sky.speed = 0.2;
+      backdrop.x = 0;
+      backdrop.y = 0;
+      backdrop.speed = 0.4;
+      backdrop2.x = 0;
+      backdrop2.y = 0;
+      backdrop2.speed = 0.6;
+    }
+    return {
+      draw: this.draw,
+      reset: this.reset
+    };
+
+  })();
 
   function startGame(){
     player.width = 60;
@@ -146,11 +188,25 @@
     player.sheet = new SpriteSheet("imgs/normal_walk.png", player.width, player.height);
     player.anim = new Animation(player.sheet, 4, 0, 15);
 
+    for (i = 0, length = Math.floor(canvas.width / platformWidth) + 1; i < length; i++) {
+          ground[i] = {"x": i * platformWidth, "y": platformHeight};
+        }
+    background.reset();
     animate();
   }
 
   function animate(){
     requestAnimFrame( animate );
+
+    background.draw();
+    for (i = 0; i < ground.length; i++) {
+      ground[i].x -= player.speed;
+      ctx.drawImage(assetLoader.imgs.grass, ground[i].x, ground[i].y);
+    }
+    if (ground[0].x <= -platformWidth) {
+      ground.shift();
+      ground.push({"x": ground[ground.length-1].x + platformWidth, "y": platformHeight});
+    }
     player.anim.update();
     player.anim.draw(64, 260);
   }
