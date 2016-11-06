@@ -244,8 +244,18 @@
       player.anim.update();
     }
 
+    player.draw = function(){
+      player.anim.draw(player.x, player.y);
+    }
 
+    player.reset = function(){
+      player.x = 64;
+      player.y = 250;
+    }
+
+    return player;
   })(Object.create(Vector.prototype));
+
   function startGame(){
 
     for (i = 0, length = Math.floor(canvas.width / platformWidth) + 1; i < length; i++) {
