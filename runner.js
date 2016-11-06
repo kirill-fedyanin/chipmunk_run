@@ -194,12 +194,59 @@
 
   })();
 
-  function startGame(){
+  var player = (function(player){
     player.width = 60;
     player.height = 96;
     player.speed = 6;
+
+    player.gravity = 1;
+    player.dy = 0;
+    player.jumpDy = -10;
+    player.isJumping = false;
+    player.isFalling = false;
+
     player.sheet = new SpriteSheet("imgs/normal_walk.png", player.width, player.height);
-    player.anim = new Animation(player.sheet, 3, 0, 15);
+    player.walkAnim = new Animation(player.sheet, 3, 0, 15);
+    player.jumpAnim = new Animation(player.sheet, 3, 15, 15);
+    player.fallAnim = new Animation(player.sheet, 3, 11, 11);
+
+    player.anim = player.walkAnim;
+    Vector.call(player, 0, 0, 0, player.dy);
+    var jumpCounter = 0; //how long jump button can be pressed
+
+    player.update = function(){
+      // Jump if not falling or jumping
+      if (KEY_STATUS.space && player.dy === 0 && !player.isJumping){
+        player.isJumping = true;
+        player.dy = player.jumpDy;
+        jumpCounter = 12;
+      }
+      if (KEY_STATUS.space && jumpCounter){
+        player.dy = player.jumpDy;
+      }
+      jumpCounter = Math.max(jumpCounter - 1, 0);
+      this.advance();
+
+      //adds gravity
+      if (player.isFalling || player.isJumping){
+        player.dy += gravity;
+      }
+
+      //change animation if falling or jumping
+      if (player.dy > 0){
+        player.anim = player.fallAnim;
+      } else if (player.dy < 0){
+        player.anim = player.jumpAnim;
+      } else {
+        player.anim = player.walkAnim;
+      }
+
+      player.anim.update();
+    }
+
+
+  })(Object.create(Vector.prototype));
+  function startGame(){
 
     for (i = 0, length = Math.floor(canvas.width / platformWidth) + 1; i < length; i++) {
           ground[i] = {"x": i * platformWidth, "y": platformHeight};
