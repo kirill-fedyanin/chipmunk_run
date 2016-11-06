@@ -1,3 +1,8 @@
+/**
+ *  Chipmunk runner
+ *  Based on straker great js runner tutorial
+ *  http://blog.sklambert.com/html5-game-tutorial-module-pattern/
+ */
 (function(){
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
@@ -18,6 +23,10 @@
 					 };
 	})();
 
+
+  /**
+   * Assets preloader - load all images
+   */
   var assetLoader = (function(){
     this.imgs     = {
       "bg"        : "imgs/bg.png",
@@ -73,6 +82,15 @@
   })();
 
   assetLoader.finished = function(){ startGame() };
+
+
+
+  /**
+   * Creates a spritesheet
+   * @param (string) - path to image
+   * @param (number) - width in px of each frame
+   * @param (number) - height in px of each frame
+   */
 
 
 })();
