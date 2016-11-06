@@ -186,7 +186,7 @@
     player.height = 96;
     player.speed = 6;
     player.sheet = new SpriteSheet("imgs/normal_walk.png", player.width, player.height);
-    player.anim = new Animation(player.sheet, 4, 0, 15);
+    player.anim = new Animation(player.sheet, 3, 0, 15);
 
     for (i = 0, length = Math.floor(canvas.width / platformWidth) + 1; i < length; i++) {
           ground[i] = {"x": i * platformWidth, "y": platformHeight};
@@ -212,5 +212,43 @@
   }
 
   assetLoader.downloadAll();
+
+
+
+  function Vector(x, y, dx, dy){
+    this.x = x || 0;
+    this.y = y || 0;
+    this.dx = dx || 0;
+    this.dy = dy || 0;
+  }
+
+  Vector.prototype.advance = function(){
+    this.x += this.dx;
+    this.y += this.dy;
+  };
+
+  Vector.prototype.minDistance = function(vector){
+    var minDistance = Infinity;
+    var max = Math.max( Math.abs(this.dx), Math.abs(this.dy),
+                        Math.abs(vector.dx), Math.abs(vector.dy));
+    var slice = 1/max; // How small does step should be
+    var x, y, distSquared;
+
+    var center_1 = {}, center_2 = {};
+    this_center.x = this.x + this.width/2;
+    this_center.y = this.y + this.height/2;
+    vector_center.x = vector.x + vector.width/2;
+    vector_center.y = vector.y + vector.height/2;
+
+    for (var percent = 0; percent < 1; percent += slice){
+      x = (this_center.x + this.dx * percent) - (vector_center.x + vector.dx * percent);
+      y = (this_center.y + this.dy * percent) - (vector_center.y + vector.dy * percent);
+      distSquared = x * x + y * y;
+
+      minDist = Math.min(minDist, distSquared);
+    }
+
+    return Math.sqrt(minDist);
+  };
 
 })();
