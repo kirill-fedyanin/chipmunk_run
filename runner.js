@@ -6,10 +6,12 @@
 (function(){
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
-  var player = {};
-  var ground = [];
+  var player, score, stop, ticker;
+  var ground = [], water = [], enemies = [], environment = [];
+  var platformHeight, platformLength, gapLength;
   var platformWidth = 32;
-  var platformHeight = canvas.height - platformWidth*4;
+  var platformBase = canvas.height - platformWidth;
+  var platformSpacer = 64;
 
 
 	var requestAnimFrame = (function(){
@@ -29,12 +31,23 @@
    */
   var assetLoader = (function(){
     this.imgs     = {
-      "bg"        : "imgs/bg.png",
-      "sky"       : "imgs/sky.png",
-      "backdrop"  : "imgs/backdrop.png",
-      "backdrop2" : "imgs/backdrop_ground.png",
-      "grass"     : "imgs/grass.png",
-      "avatar"    : "imgs/normal_walk.png"
+      "bg"            : "imgs/bg.png",
+      "sky"           : "imgs/sky.png",
+      "backdrop"      : "imgs/backdrop.png",
+      "backdrop2"     : "imgs/backdrop_ground.png",
+      "grass"         : "imgs/grass.png",
+      "avatar_normal" : "imgs/normal_walk.png",
+      "water"         : "imgs/water.png",
+      "grass1"        : "imgs/grassMid1.png",
+      "grass2"        : "imgs/grassMid2.png",
+      "bridge"        : "imgs/bridge.png",
+      "plant"         : "imgs/plant.png",
+      "bush1"         : "imgs/bush1.png",
+      "bush2"         : "imgs/bush2.png",
+      "cliff"         : "imgs/grassCliffRight.png",
+      "spikes"        : "imgs/spikes.png",
+      "box"           : "imgs/boxCoin.png",
+      "slime"         : "imgs/slime.png"
     }
 
     var assetsLoaded = 0;
