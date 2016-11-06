@@ -92,5 +92,18 @@
    * @param (number) - height in px of each frame
    */
 
+  function SpriteSheet(path, frameWidth, frameHeight){
+    this.img = new Image();
+    this.frameWidth = frameWidth;
+    this.frameHeight = frameHeight;
+
+    var self = this;
+
+    this.img.onload = function(){
+      self.framesPerRow = Math.floor(self.image.width / self.frameWidth);
+    }
+    this.img.src = path;
+  }
+
 
 })();
