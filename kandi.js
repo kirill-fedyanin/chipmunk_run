@@ -9,6 +9,7 @@ var ground = [], water = [], enemies = [], environment = [];
 var platformHeight, platformLength, gapLength;
 var platformWidth = 32;
 var platformBase = canvas.height - platformWidth;  // bottom row of the game
+// var platformSpacer = 64;
 var platformSpacer = 64;
 
 var canUseLocalStorage = 'localStorage' in window && window.localStorage !== null;
@@ -652,7 +653,8 @@ function spawnSprites() {
   // start over
   else {
     // increase gap length every speed increase of 4
-    gapLength = rand(player.speed - 2, player.speed);
+    // gapLength = rand(player.speed - 2, player.speed - 0);
+    gapLength = rand(player.speed - 2, player.speed - 2);
     // only allow a ground to increase by 1
     platformHeight = bound(rand(0, platformHeight + rand(0, 2)), 0, 4);
     platformLength = rand(Math.floor(player.speed/2), player.speed * 4);
@@ -690,7 +692,7 @@ function spawnEnvironmentSprites() {
  * Spawn new enemy sprites off screen
  */
 function spawnEnemySprites() {
-  if (score > 100 && Math.random() > 0.96 && enemies.length < 3 && platformLength > 5 &&
+  if (score > 200 && Math.random() > 0.96 && enemies.length < 3 && platformLength > 5 &&
       (enemies.length ? canvas.width - enemies[enemies.length-1].x >= platformWidth * 3 ||
        canvas.width - enemies[enemies.length-1].x < platformWidth : true)) {
     enemies.push(new Sprite(
