@@ -376,8 +376,10 @@ Vector.prototype.minDist = function(vec) {
  */
 var player = (function(player) {
   // add properties directly to the player imported object
-  player.width     = 60;
-  player.height    = 96;
+  // player.width     = 60;
+  player.width     = 72;
+  // player.height    = 96;
+  player.height    = 64;
   player.speed     = 6;
 
   // jumping
@@ -389,9 +391,12 @@ var player = (function(player) {
 
   // spritesheets
   player.sheet     = new SpriteSheet('imgs/normal_walk.png', player.width, player.height);
-  player.walkAnim  = new Animation(player.sheet, 4, 0, 15);
-  player.jumpAnim  = new Animation(player.sheet, 4, 15, 15);
-  player.fallAnim  = new Animation(player.sheet, 4, 11, 11);
+  // player.walkAnim  = new Animation(player.sheet, 4, 0, 15);
+  // player.jumpAnim  = new Animation(player.sheet, 4, 15, 15);
+  // player.fallAnim  = new Animation(player.sheet, 4, 11, 11);
+  player.walkAnim  = new Animation(player.sheet, 4, 0, 0);
+  player.jumpAnim  = new Animation(player.sheet, 4, 0, 0);
+  player.fallAnim  = new Animation(player.sheet, 4, 0, 0);
   player.anim      = player.walkAnim;
 
   Vector.call(player, 0, 0, 0, player.dy);
