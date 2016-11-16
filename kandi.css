@@ -159,7 +159,7 @@ a {
   margin-top: 10px;
 }
 
-#game-over {
+#game-over, #she-won {
   display: none;
   text-align: center;
   padding-top: 92px;

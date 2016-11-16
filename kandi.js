@@ -17,6 +17,7 @@ var playSound;
 
 // set the sound preference
 if (canUseLocalStorage) {
+  localStorage.setItem('kandi.playSound', true);
   playSound = (localStorage.getItem('kandi.playSound') === "true")
 
   if (playSound) {
@@ -707,6 +708,9 @@ function spawnEnemySprites() {
  * Game loop
  */
 function animate() {
+  if (score==51 && !stop){
+    sheWon();
+  }
   if (!stop) {
     requestAnimFrame( animate );
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -856,6 +860,12 @@ function gameOver() {
   assetLoader.sounds.bg.pause();
   assetLoader.sounds.gameOver.currentTime = 0;
   assetLoader.sounds.gameOver.play();
+}
+
+function sheWon(){
+  stop = true;
+  $('#she-won').show();
+  alert("Ты победила!");
 }
 
 /**
