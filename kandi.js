@@ -865,7 +865,6 @@ function gameOver() {
 function sheWon(){
   stop = true;
   $('#she-won').show();
-  alert("Ты победила!");
 }
 
 /**
