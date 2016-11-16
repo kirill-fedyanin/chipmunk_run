@@ -783,6 +783,21 @@ document.onkeyup = function(e) {
   }
 };
 
+$(document).mousedown(function(){
+  KEY_STATUS["space"] = true;
+});
+
+$(document).mouseup(function(){
+  KEY_STATUS["space"] = false;
+});
+
+$(document).on("touchstart", function(){
+  KEY_STATUS["space"] = true;
+});
+
+$(document).on("touchend", function(){
+  KEY_STATUS["space"] = false;
+});
 /**
  * Request Animation Polyfill
  */
