@@ -708,7 +708,7 @@ function spawnEnemySprites() {
  * Game loop
  */
 function animate() {
-  if (score==501 && !stop){
+  if (score==401 && !stop){
     sheWon();
   }
   if (!stop) {
