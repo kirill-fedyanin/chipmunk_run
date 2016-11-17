@@ -725,7 +725,7 @@ function animate() {
     updateEnemies();
 
     // draw the score
-    ctx.fillText('Score: ' + score + 'm', canvas.width - 140, 30);
+    ctx.fillText('Дистанция: ' + score + '/400 м', canvas.width - 160, 30);
 
     // spawn a new Sprite
     if (ticker % Math.floor(platformWidth / player.speed) === 0) {
