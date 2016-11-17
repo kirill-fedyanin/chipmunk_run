@@ -693,7 +693,7 @@ function spawnEnvironmentSprites() {
  * Spawn new enemy sprites off screen
  */
 function spawnEnemySprites() {
-  if (score > 200 && Math.random() > 0.96 && enemies.length < 3 && platformLength > 5 &&
+  if (score > 182 && Math.random() > 0.96 && enemies.length < 3 && platformLength > 5 &&
       (enemies.length ? canvas.width - enemies[enemies.length-1].x >= platformWidth * 3 ||
        canvas.width - enemies[enemies.length-1].x < platformWidth : true)) {
     enemies.push(new Sprite(
@@ -708,7 +708,7 @@ function spawnEnemySprites() {
  * Game loop
  */
 function animate() {
-  if (score==401 && !stop){
+  if (score==366 && !stop){
     sheWon();
   }
   if (!stop) {
@@ -725,7 +725,7 @@ function animate() {
     updateEnemies();
 
     // draw the score
-    ctx.fillText('Дистанция: ' + score + '/400 м', canvas.width - 160, 30);
+    ctx.fillText('Дистанция: ' + score + '/365 д', canvas.width - 160, 30);
 
     // spawn a new Sprite
     if (ticker % Math.floor(platformWidth / player.speed) === 0) {
