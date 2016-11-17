@@ -2,6 +2,14 @@
   box-sizing: border-box;
 }
 
+#right-response, #wrong-response{
+  display: none;
+}
+#right-response a{
+  font-weight: normal;
+  text-decoration: underline;
+  text-shadow: none;
+}
 body {
   font-family: arial, sans-serif;
   font-size: 16px;

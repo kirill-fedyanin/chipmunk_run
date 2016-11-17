@@ -1,9 +1,13 @@
 $(function(){
-  var answers = ["внутри", "со мной", "с собой", "в сердце"]
+  var answers = ["внутри", "со мной", "с собой"];
   $("form").submit(function(event){
+    event.preventDefault();
     var answer = $("#answer").val().toLowerCase();
     var right = answers.indexOf(answer) != -1;
-    console.log(right);
-    event.preventDefault();
+    if (right){
+      $("#right-response").show();
+    } else {
+      $("#wrong-response").show();
+    }
   });
 })
