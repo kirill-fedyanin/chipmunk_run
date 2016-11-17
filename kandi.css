@@ -10,6 +10,11 @@
   text-decoration: underline;
   text-shadow: none;
 }
+#right-response{
+  font-size: 200%;
+  /* color: #3cc; */
+  background: #ff4040;
+}
 body {
   font-family: arial, sans-serif;
   font-size: 16px;
