@@ -396,9 +396,9 @@ var player = (function(player) {
   // player.walkAnim  = new Animation(player.sheet, 4, 0, 15);
   // player.jumpAnim  = new Animation(player.sheet, 4, 15, 15);
   // player.fallAnim  = new Animation(player.sheet, 4, 11, 11);
-  player.walkAnim  = new Animation(player.sheet, 4, 0, 0);
-  player.jumpAnim  = new Animation(player.sheet, 4, 0, 0);
-  player.fallAnim  = new Animation(player.sheet, 4, 0, 0);
+  player.walkAnim  = new Animation(player.sheet, 7, 0, 3);
+  player.jumpAnim  = new Animation(player.sheet, 7, 0, 0);
+  player.fallAnim  = new Animation(player.sheet, 7, 1, 1);
   player.anim      = player.walkAnim;
 
   Vector.call(player, 0, 0, 0, player.dy);
