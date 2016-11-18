@@ -655,7 +655,7 @@ function spawnSprites() {
   else {
     // increase gap length every speed increase of 4
     // gapLength = rand(player.speed - 2, player.speed - 0);
-    gapLength = rand(player.speed - 2, player.speed - 2);
+    gapLength = rand(player.speed - 3, player.speed - 2);
     // only allow a ground to increase by 1
     platformHeight = bound(rand(0, platformHeight + rand(0, 2)), 0, 4);
     platformLength = rand(Math.floor(player.speed/2), player.speed * 4);
@@ -693,7 +693,7 @@ function spawnEnvironmentSprites() {
  * Spawn new enemy sprites off screen
  */
 function spawnEnemySprites() {
-  if (score > 182 && Math.random() > 0.96 && enemies.length < 3 && platformLength > 5 &&
+  if (score > 120 && Math.random() > 0.98 && enemies.length < 3 && platformLength > 5 &&
       (enemies.length ? canvas.width - enemies[enemies.length-1].x >= platformWidth * 3 ||
        canvas.width - enemies[enemies.length-1].x < platformWidth : true)) {
     enemies.push(new Sprite(
