@@ -460,6 +460,7 @@ var player = (function(player) {
   player.reset = function() {
     player.x = 64;
     player.y = 250;
+    player.speed = 6;
   };
 
   return player;
